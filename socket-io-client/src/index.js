@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
-//import Connect from './connect';
 import Login from './components/login';
 import Notes from './components/notes';
 import * as serviceWorker from './serviceWorker';
 const io = require('socket.io-client');
 
-//var socketURI = 'coms-319-171.cs.iastate.edu:4001';
-var socketURI = '173.22.77.190:3000';
+var socketURI = 'localhost:4001';
+//var socketURI = '173.22.77.190:3000';
 var socket;
 
 class Index extends Component {
@@ -64,7 +62,7 @@ class Index extends Component {
   addNote = (e) => {
     var note = {
       x: 20,
-      y: 20,
+      y: 60,
       body: "",
       title: "",
       color: "#2196F3"
@@ -124,11 +122,15 @@ class Index extends Component {
 
   //Handles the note position change
   noteMoved = (pageX, pageY, posRX, posRY, num) => {
+    var x = pageX - posRX - 220;
+    if (x < 0) x = 0;
+    var y = pageY - posRY;
+    if (y < 40) y = 40;
     var note = null;
     const notes = this.state.notes.map((item, key) => {
         if (key === num) {
-          item.x = pageX - posRX - 220;
-          item.y = pageY - posRY;
+          item.x = x;
+          item.y = y;
           note = item;
           return item;
         } else {

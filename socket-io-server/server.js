@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 var  bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
-var  port = 3000;
+var  port = 4001;
 
 //sends the index page to the client
 app.get("/", (req, res) =>{

@@ -23,23 +23,43 @@
   color: red;
   visibility: hidden;
 }
-.room{
-  float: right;
-  text-align: center;
-  margin-top: 10px;
-  margin-right: 30px;
-}
-.addNote{
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
 .buttonAdd{
-  font-size: 100px;
+  cursor: pointer;
+  font-size: 25px;
+  margin-top: 5px;
   background-color: red;
-  border-radius: 100px;
-  border-color: red;
-  padding-left: 27px;
-  padding-right: 27px;
+  border-radius: 20px;
+  border-color: darkred;
+  color: white;
   display: inline-block;
+}
+.buttonRoom{
+  cursor: pointer;
+  background-color: red;
+  border-color: darkred;
+  color: white;
+  border-radius: 10px;
+}
+ul {
+  z-index: 999;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0px;
+  padding-bottom: 2px;
+  overflow: hidden;
+  background-color: #000000;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+li {
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
 }
