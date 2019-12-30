@@ -1,0 +1,45 @@
+.flex_box {
+  display: flex;
+  padding-top: 10%;
+  justify-content: center;
+  text-align: center;
+}
+.flex_box > div {
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  border: 3px solid red;
+  border-radius: 20px;
+  background-color: #595959;
+}
+.headings{
+  font-size: 40px;
+}
+.buttons{
+  font-size: 30px;
+}
+.error{
+  font-size: 15px;
+  color: red;
+  visibility: hidden;
+}
+.room{
+  float: right;
+  text-align: center;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+.addNote{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.buttonAdd{
+  font-size: 100px;
+  background-color: red;
+  border-radius: 100px;
+  border-color: red;
+  padding-left: 27px;
+  padding-right: 27px;
+  display: inline-block;
+}

@@ -1,0 +1,81 @@
+.mydiv {
+  position: absolute;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+}
+
+.mydivheader {
+  padding: 1px;
+  color: #fff;
+}
+
+.noteBody{
+  width: 235px;
+  height: 195px;
+  background: none;
+  border  : none;
+  font: 1em sans-serif;
+  margin-top: 5px;
+  resize: none;
+}
+
+.noteTitle{
+  padding-top: 10px;
+  margin-left: 3px;
+  height: 20px;
+  width: 185px;
+  background: none;
+  border  : none;
+  font: bold 1.2em sans-serif;
+}
+
+.noteMove{
+  padding-top: 4px;
+  padding-right: 4px;
+  width: 25px;
+  height: 25px;
+  cursor: move;
+  margin-top: 0px;
+  float: right;
+}
+
+.dropdown{
+  margin-right: 3px;
+  display: inline-block;
+  float: right;
+}
+
+.noteOptions{
+  padding-top: 4px;
+  width: 25px;
+  height: 25px;
+  float: right;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdown:hover .noteOptions {
+  background-color: #0a6fc2;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  margin-top: 29px;
+  z-index: 1;
+}
+
+.dropdownContent img{
+  width: 25px;
+  height: 25px;
+  padding: 2px;
+  display: block;
+}
+
+.dropdownContent img:hover {
+  background-color: #f1f1f1
+}
