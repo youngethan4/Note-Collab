@@ -14,6 +14,8 @@ app.get("/", (req, res) =>{
 });
 
 var rooms = {};
+const notes = "notes";
+const users = "users";
 io.on('connection', (socket) => {
 			//joins a room that is specified by the user or creates a new room
     	socket.on('join', (name, room, callback) => {
@@ -23,7 +25,9 @@ io.on('connection', (socket) => {
 					do {
 						var newRoom = makeRoom(4);
 						if (rooms[newRoom] == undefined){
-							rooms[newRoom] = [];
+              rooms[newRoom] = {};
+							rooms[newRoom][notes] = [];
+              rooms[newRoom][users] = [];
 							userRoom = newRoom;
 							createdRoom = true;
 						}
@@ -32,11 +36,14 @@ io.on('connection', (socket) => {
 				}
 				if(rooms[userRoom] != undefined){
 					console.log(name +" has joined the room " + userRoom + ".");
+          rooms[userRoom][users].push(name);
+          console.log(rooms[userRoom][users]);
 					socket.user = name;
 					socket.room = userRoom;
 					socket.join(socket.room);
 					//Sends all notes to the new user
-	        socket.emit('send notes', rooms[socket.room]);
+	        socket.emit('send notes', rooms[socket.room][notes]);
+          io.to(socket.room).emit('user joined or left', rooms[socket.room][users]);
 				}
 				else{
 					userRoom = '';
@@ -47,25 +54,33 @@ io.on('connection', (socket) => {
 
 			//When a note is changed or added this handler is called.
 			socket.on('changed note', (note, num) => {
-				rooms[socket.room][num] = note;
+				rooms[socket.room][notes][num] = note;
 				socket.to(socket.room).emit('note changed', note, num);
 			});
 
       //handles a created note
       socket.on('created note', (note) => {
-        rooms[socket.room].push(note);
+        rooms[socket.room][notes].push(note);
         socket.to(socket.room).emit('new note', note);
       });
 
       //handles a deleted note
       socket.on('delete note', (num) => {
-        rooms[socket.room].splice(num, 1);
-        io.to(socket.room).emit('note removed', rooms[socket.room]);
+        rooms[socket.room][notes].splice(num, 1);
+        io.to(socket.room).emit('note removed', rooms[socket.room][notes]);
       });
 
-			//Lets console know when usre dissconnects.
+			//Lets console know when user dissconnects.
     	socket.on('disconnect', () => {
-	 	   		console.log(socket.user + ' has left room ' + socket.room +".");
+	 	   	console.log(socket.user + ' has left room ' + socket.room +".");
+        if (rooms[socket.room][users].length <= 1){
+          rooms[socket.room] = undefined;
+        }
+        else {
+          rooms[socket.room][users].splice(rooms[socket.room][users].indexOf(socket.user), 1);
+          io.to(socket.room).emit('user joined or left', rooms[socket.room][users]);
+          console.log(rooms[socket.room][users]);
+        }
 	  	});
 		});
 

@@ -15,9 +15,10 @@ class Index extends Component {
     super();
 
     this.state = {
+      users: [],
       name: '',
       room: '',
-      notes : []
+      notes: []
     };
   };
 
@@ -55,6 +56,10 @@ class Index extends Component {
 
     socket.on('note removed', (notes) => {
       this.setState({notes: notes});
+    });
+
+    socket.on('user joined or left', (users) => {
+      this.setState({users: users});
     });
   }
 
@@ -155,7 +160,8 @@ class Index extends Component {
       returnCom = <Notes notes={this.state.notes} userRoom={this.state.room}
         addNote={this.addNote} noteBodyChange={this.noteBodyChange}
         noteTitleChange={this.noteTitleChange} noteMoved={this.noteMoved}
-        noteColorChange={this.noteColorChange} noteRemoved={this.noteRemoved}/>;
+        noteColorChange={this.noteColorChange} noteRemoved={this.noteRemoved}
+        users={this.state.users}/>;
     }
     return (returnCom);
   };
