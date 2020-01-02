@@ -11,21 +11,23 @@
 }
 
 .noteBody{
-  width: 235px;
-  height: 195px;
+  width: 240px;
+  height: 205px;
   background: none;
-  border  : none;
+  outline: none;
+  border: none;
   font: 1em sans-serif;
-  margin-top: 5px;
+  margin-top: 3px;
   resize: none;
 }
 
 .noteTitle{
-  padding-top: 10px;
+  margin-top: 8px;
   margin-left: 3px;
   height: 20px;
   width: 185px;
   background: none;
+  outline: none;
   border  : none;
   font: bold 1.2em sans-serif;
 }
@@ -59,7 +61,7 @@
 }
 
 .dropdown:hover .noteOptions {
-  background-color: #0a6fc2;
+  background-color: rgba(0,0,0,.5);
 }
 
 .dropdownContent {
@@ -67,6 +69,7 @@
   position: absolute;
   margin-top: 29px;
   z-index: 1;
+  background-color: #333333;
 }
 
 .dropdownContent img{
@@ -78,4 +81,8 @@
 
 .dropdownContent img:hover {
   background-color: #f1f1f1
+}
+
+::placeholder {
+  color: #333333;
 }

@@ -10,13 +10,35 @@
   font-size: 30px;
   border: 3px solid red;
   border-radius: 20px;
-  background-color: #595959;
+  background-color: #666666;
 }
 .headings{
   font-size: 40px;
 }
 .buttons{
   font-size: 30px;
+  background-color: #cccccc;
+  border: 1px solid red;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+}
+.name{
+  font-size: 30px;
+  background-color: #666666;
+  border-bottom: 1px solid red;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 350px;
+}
+.room{
+  font-size: 30px;
+  background-color: #666666;
+  border-bottom: 1px solid red;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100px;
 }
 .error{
   font-size: 15px;

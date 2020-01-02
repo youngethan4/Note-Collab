@@ -15,7 +15,7 @@ class Nav extends React.Component {
 
     var returnCom =
     <div>
-      <textarea style={{visibility: "gone"}}
+      <textarea style={{opacity: "0"}}
         ref={(textarea) => this.textArea = textarea}
         value={userRoom} readOnly
       />

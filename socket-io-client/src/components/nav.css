@@ -25,44 +25,47 @@ ul {
   position: fixed;
   top: 0px;
   width: 100%;
-  height: 5%;
+  height: 45px;
 }
 li {
   padding-left: 5px;
   padding-right: 5px;
 }
 .roomCopy {
+  padding-left: 15px;
   float: right;
-  display: block;
+  width: 10%;
+  display: inline-block;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 .addNote {
   float: left;
-  display: block;
+  width: 10%;
+  display: inline-block;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 .titleNav {
   float: left;
+  width: 69%;
   font-size: 35px;
-  margin-left: 40%;
-  display: block;
+  display: inline-block;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 .usersConnected {
   float: right;
+  width: 10%;
   display: inline-block;
   color: white;
   text-align: center;
   text-decoration: none;
 }
 .userNumber {
-  padding-right: 15px;
   margin-bottom: 0;
   margin-top: 7px;
   font-size: 20px;

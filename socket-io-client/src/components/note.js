@@ -101,7 +101,7 @@ class Note extends React.Component {
     var returnCom =
     <div id="note" style={{left: x, top: y, backgroundColor: color}} className="mydiv">
       <div className="mydivheader" >
-        <input className="noteTitle" type="text" onChange={this.handleNoteTitleChange} value={title}></input>
+        <input className="noteTitle" placeholder="Title" type="text" onChange={this.handleNoteTitleChange} value={title}></input>
         <img className="noteMove" id={this.props.moveID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
         <div className="dropdown">
           <img className="noteOptions" src={Options} alt="options" ></img>
@@ -114,7 +114,7 @@ class Note extends React.Component {
           </div>
         </div>
       </div>
-      <textarea className="noteBody" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
+      <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
     </div>
 
       return(returnCom);

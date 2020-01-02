@@ -73,7 +73,8 @@ io.on('connection', (socket) => {
 			//Lets console know when user dissconnects.
     	socket.on('disconnect', () => {
 	 	   	console.log(socket.user + ' has left room ' + socket.room +".");
-        if (rooms[socket.room][users].length <= 1){
+        if (rooms[socket.room] == undefined || rooms[socket.room][users] == undefined
+          || rooms[socket.room][users].length <= 1){
           rooms[socket.room] = undefined;
         }
         else {

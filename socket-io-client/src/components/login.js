@@ -52,15 +52,15 @@ class Login extends React.Component {
             <div id="Name">
               <h1 className="headings">Create Room:</h1>
               <label htmlFor="name">Name: </label>
-              <input className="buttons" id="createName" name="name" type="text" value={userCreate} onChange={this.handleUserCreateChange}/><br></br><br></br>
+              <input className="name" id="createName" name="name" type="text" value={userCreate} onChange={this.handleUserCreateChange}/><br></br><br></br>
               <button className="buttons" id="createButton" onClick={this.createRoom}>Create</button>
             </div>
             <div id="Name" className="join_room">
               <h1 className="headings">Join Room:</h1>
               <label htmlFor="name">Name: </label>
-              <input className="buttons" id="joinName" name="name" type="text" value={userJoin} onChange={this.handleUserJoinChange}/><br></br><br></br>
+              <input className="name" id="joinName" name="name" type="text" value={userJoin} onChange={this.handleUserJoinChange}/><br></br><br></br>
               <label htmlFor="room">Room: </label>
-              <input className="buttons" id="room" name="room" type="text" value={room} onChange={this.handleRoomChange}/><br></br><br></br>
+              <input className="room" id="room" name="room" type="text" value={room} onChange={this.handleRoomChange}/><br></br><br></br>
               <button className="buttons" id="joinButton" onClick={this.joinRoom}>Join</button>
               <p className="error" id="error">No room detected.</p>
             </div>
