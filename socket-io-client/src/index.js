@@ -126,16 +126,12 @@ class Index extends Component {
   }
 
   //Handles the note position change
-  noteMoved = (pageX, pageY, posRX, posRY, num) => {
-    var x = pageX - posRX - 220;
-    if (x < 0) x = 0;
-    var y = pageY - posRY;
-    if (y < 40) y = 40;
+  noteMoved = (pageX, pageY, num) => {
     var note = null;
     const notes = this.state.notes.map((item, key) => {
         if (key === num) {
-          item.x = x;
-          item.y = y;
+          item.x = pageX;
+          item.y = pageY;
           note = item;
           return item;
         } else {

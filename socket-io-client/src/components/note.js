@@ -16,7 +16,9 @@ class Note extends React.Component {
     this.state = {
       dragging: false,
       posRX: null,
-      posRY: null
+      posRY: null,
+      oldX: 0,
+      oldY: 0
     }
   }
 
@@ -37,8 +39,8 @@ class Note extends React.Component {
     var rect = document.getElementById(this.props.moveID).getBoundingClientRect();
     this.setState({
       dragging: true,
-      posRX: e.pageX - rect.left,
-      posRY: e.pageY - rect.top
+      posRX: e.pageX,
+      posRY: e.pageY
     });
     e.preventDefault();
     e.stopPropagation();
@@ -47,7 +49,18 @@ class Note extends React.Component {
   //While the mouse is down and moving, this method sends updates to the parent component for processing
   onMouseMove = (e) => {
     if (!this.state.dragging) return;
-    this.props.noteMoved(e.pageX, e.pageY, this.state.posRX, this.state.posRY, this.props.moveID);
+    var offsetX = e.pageX - this.state.posRX;
+    var offsetY = e.pageY - this.state.posRY;
+    this.setState({
+      dragging: true,
+      posRX: e.pageX,
+      posRY: e.pageY
+    });
+    var newX = this.props.note.x + offsetX;
+    var newY = this.props.note.y + offsetY;
+    if (newX < 0 || e.pageX <= 235) newX = 0;
+    if (newY < 45 || e.pageY <= 60) newY = 45;
+    this.props.noteMoved(newX, newY, this.props.moveID);
     e.stopPropagation();
     e.preventDefault();
   }
