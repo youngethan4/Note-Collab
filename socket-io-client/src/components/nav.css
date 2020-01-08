@@ -8,6 +8,7 @@
   color: white;
   display: inline-block;
 }
+
 .buttonRoom{
   cursor: pointer;
   background-color: red;
@@ -15,6 +16,7 @@
   color: white;
   border-radius: 10px;
 }
+
 ul {
   z-index: 999;
   list-style-type: none;
@@ -27,10 +29,12 @@ ul {
   width: 100%;
   height: 45px;
 }
+
 li {
   padding-left: 5px;
   padding-right: 5px;
 }
+
 .roomCopy {
   padding-left: 15px;
   float: right;
@@ -40,6 +44,7 @@ li {
   text-align: center;
   text-decoration: none;
 }
+
 .addNote {
   float: left;
   width: 10%;
@@ -48,6 +53,7 @@ li {
   text-align: center;
   text-decoration: none;
 }
+
 .titleNav {
   float: left;
   width: 69%;
@@ -57,6 +63,7 @@ li {
   text-align: center;
   text-decoration: none;
 }
+
 .usersConnected {
   float: right;
   width: 10%;
@@ -65,18 +72,22 @@ li {
   text-align: center;
   text-decoration: none;
 }
+
 .userNumber {
   margin-bottom: 0;
   margin-top: 7px;
   font-size: 20px;
 }
+
 .dropUsers:hover .dropdownUsers {
   display: block;
 }
+
 .dropdownUsers {
   display: none;
   z-index: 1;
 }
+
 .dropdownUsers p{
   margin: 0;
   font-size: 15px;

@@ -80,9 +80,39 @@
 }
 
 .dropdownContent img:hover {
-  background-color: #f1f1f1
+  background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 ::placeholder {
   color: #333333;
+}
+
+.styleDropdown {
+  display: flex;
+  float: right;
+}
+
+.styleDropdown:hover .styleContent {
+  display: block;
+}
+
+.styleContent {
+  display: none;
+  position: absolute;
+  margin-top: 215px;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.styleContent img {
+  width: 25px;
+  height: 25px;
+  padding: 2px;
+  margin: 0px;
+}
+
+.styleDropdown img:hover {
+  background-color: #888888;
+  cursor: pointer;
 }

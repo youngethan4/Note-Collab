@@ -8,6 +8,12 @@ import Blue from './pics/blue.png';
 import Yellow from './pics/yellow.png';
 import Green from './pics/green.png';
 import Orange from './pics/orange.png';
+import Bold from './pics/bold.png';
+import Italic from './pics/italic.png';
+import Underline from './pics/underline.png';
+import AlignLeft from './pics/leftAlign.png';
+import AlignCenter from './pics/centerAlign.png';
+import AlignRight from './pics/rightAlign.png';
 
 class Note extends React.Component {
   constructor(props){
@@ -107,6 +113,30 @@ class Note extends React.Component {
     this.props.noteRemoved(this.props.moveID);
   }
 
+  boldHandler = (e) => {
+
+  }
+
+  italicHandler = (e) => {
+
+  }
+
+  underlineHandler = (e) => {
+
+  }
+
+  alignLeftHandler = (e) => {
+
+  }
+
+  alignCenterHandler = (e) => {
+
+  }
+
+  alignRightHandler = (e) => {
+
+  }
+
   render(){
     var { x, y, title, body, color } = this.props.note;
     x += 'px';
@@ -127,7 +157,17 @@ class Note extends React.Component {
           </div>
         </div>
       </div>
-      <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
+      <div className="styleDropdown">
+        <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
+        <div className="styleContent">
+          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
+          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
+          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
+          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
+          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
+          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
+        </div>
+      </div>
     </div>
 
       return(returnCom);
