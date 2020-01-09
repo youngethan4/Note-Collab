@@ -44,7 +44,7 @@
 
 .dropdown{
   margin-right: 3px;
-  display: inline-block;
+  display: block;
   float: right;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .dropdown:hover .noteOptions {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.4);
 }
 
 .dropdownContent {
@@ -69,19 +69,21 @@
   position: absolute;
   margin-top: 29px;
   z-index: 1;
-  background-color: #333333;
 }
 
 .dropdownContent img{
-  width: 25px;
-  height: 25px;
+  width: 21px;
+  height: 21px;
   padding: 2px;
   display: block;
+  background-color: rgba(0,0,0,.4);
 }
 
 .dropdownContent img:hover {
-  background-color: #f1f1f1;
+  background-color: #333333;
   cursor: pointer;
+  width: 26px;
+  height: 26px;
 }
 
 ::placeholder {
@@ -89,7 +91,7 @@
 }
 
 .styleDropdown {
-  display: flex;
+  display: block;
   float: right;
 }
 
@@ -100,19 +102,19 @@
 .styleContent {
   display: none;
   position: absolute;
-  margin-top: 215px;
   z-index: 1;
-  background-color: #ffffff;
 }
 
 .styleContent img {
-  width: 25px;
-  height: 25px;
-  padding: 2px;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
   margin: 0px;
 }
 
-.styleDropdown img:hover {
+.styleContent img:hover {
   background-color: #888888;
   cursor: pointer;
+  width: 25px;
+  height: 25px;
 }

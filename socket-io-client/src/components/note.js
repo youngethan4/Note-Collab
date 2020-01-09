@@ -143,29 +143,31 @@ class Note extends React.Component {
     y += 'px';
     var returnCom =
     <div id="note" style={{left: x, top: y, backgroundColor: color}} className="mydiv">
-      <div className="mydivheader" >
-        <input className="noteTitle" placeholder="Title" type="text" onChange={this.handleNoteTitleChange} value={title}></input>
-        <img className="noteMove" id={this.props.moveID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
-        <div className="dropdown">
-          <img className="noteOptions" src={Options} alt="options" ></img>
-          <div className="dropdownContent">
-            <img src={Blue} onClick={this.changeBlue} alt="blue" ></img>
-            <img src={Yellow} onClick={this.changeYellow} alt="yellow" ></img>
-            <img src={Green} onClick={this.changeGreen} alt="green" ></img>
-            <img src={Orange} onClick={this.changeOrange} alt="orange" ></img>
-            <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
+      <div className="styleDropdown">
+        <div className="mydivheader" >
+          <input className="noteTitle" placeholder="Title" type="text" onChange={this.handleNoteTitleChange} value={title}></input>
+          <img className="noteMove" id={this.props.moveID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
+          <div className="dropdown">
+            <img className="noteOptions" src={Options} alt="options" ></img>
+            <div className="dropdownContent">
+              <img src={Blue} onClick={this.changeBlue} alt="blue" ></img>
+              <img src={Yellow} onClick={this.changeYellow} alt="yellow" ></img>
+              <img src={Green} onClick={this.changeGreen} alt="green" ></img>
+              <img src={Orange} onClick={this.changeOrange} alt="orange" ></img>
+              <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="styleDropdown">
-        <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
-        <div className="styleContent">
-          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
-          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
-          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
-          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
-          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
-          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
+        <div>
+          <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
+          <div className="styleContent">
+            <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
+            <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
+            <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
+            <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
+            <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
+            <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
+          </div>
         </div>
       </div>
     </div>
