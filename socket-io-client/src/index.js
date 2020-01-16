@@ -69,7 +69,6 @@ class Index extends Component {
       x: 20,
       y: 60,
       body: "",
-      title: "",
       color: "#2196F3"
     };
     const notes = this.state.notes.concat(note);
@@ -83,22 +82,6 @@ class Index extends Component {
     const notes = this.state.notes.map((item, key) => {
         if (key === num) {
           item.body = body;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
-    this.setState({notes: notes});
-    socket.emit('changed note', note, num);
-  }
-
-  //Handles the note title change
-  noteTitleChange = (title, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.title = title;
           note = item;
           return item;
         } else {
@@ -155,9 +138,8 @@ class Index extends Component {
     else {
       returnCom = <Notes notes={this.state.notes} userRoom={this.state.room}
         addNote={this.addNote} noteBodyChange={this.noteBodyChange}
-        noteTitleChange={this.noteTitleChange} noteMoved={this.noteMoved}
-        noteColorChange={this.noteColorChange} noteRemoved={this.noteRemoved}
-        users={this.state.users}/>;
+        noteMoved={this.noteMoved} noteColorChange={this.noteColorChange}
+        noteRemoved={this.noteRemoved} users={this.state.users}/>;
     }
     return (returnCom);
   };

@@ -13,9 +13,9 @@ class Notes extends React.Component {
       <Nav userRoom={userRoom} addNote={this.props.addNote} users={users}/>
       <div id="notes">
         {notes.map((item, key) =>
-          <Note note={item} key={key} moveID={key} noteBodyChange={this.props.noteBodyChange}
-            noteTitleChange={this.props.noteTitleChange} noteMoved={this.props.noteMoved}
-            noteColorChange={this.props.noteColorChange} noteRemoved={this.props.noteRemoved}/>
+          <Note note={item} key={key} ID={key} noteBodyChange={this.props.noteBodyChange}
+            noteMoved={this.props.noteMoved} noteColorChange={this.props.noteColorChange}
+            noteRemoved={this.props.noteRemoved}/>
         )}
       </div>
     </div>

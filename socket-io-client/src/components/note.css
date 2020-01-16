@@ -1,59 +1,49 @@
-.mydiv {
+.note{
   position: absolute;
-  text-align: center;
-  width: 250px;
-  height: 250px;
+  display: flex;
 }
 
-.mydivheader {
-  padding: 1px;
-  color: #fff;
+.note:hover .moveOptions {
+  display: block;
+}
+
+.moveOptions{
+  display: block;
+  width: 27px;
+  margin-left: 250px;
+  display: none;
+  position: absolute;
+  padding-right: 2px;
+  z-index: 1;
+  background-color: rgba(0,0,0,.1);
 }
 
 .noteBody{
-  width: 240px;
-  height: 205px;
-  background: none;
-  outline: none;
-  border: none;
-  font: 1em sans-serif;
-  margin-top: 3px;
-  resize: none;
-}
-
-.noteTitle{
-  margin-top: 8px;
-  margin-left: 3px;
-  height: 20px;
-  width: 185px;
-  background: none;
-  outline: none;
-  border  : none;
-  font: bold 1.2em sans-serif;
+  cursor: text;
+  margin: 4px;
+  width: 242px;
+  height: 242px;
+  max-height: 242px;
+  scroll-behavior: auto;
 }
 
 .noteMove{
-  padding-top: 4px;
-  padding-right: 4px;
   width: 25px;
   height: 25px;
+  margin-left: 2px;
+  margin-top: 5px;
   cursor: move;
-  margin-top: 0px;
-  float: right;
 }
 
 .dropdown{
-  margin-right: 3px;
   display: block;
-  float: right;
 }
 
 .noteOptions{
-  padding-top: 4px;
   width: 25px;
   height: 25px;
-  float: right;
   cursor: pointer;
+  margin-left: 2px;
 }
 
 .dropdown:hover .dropdownContent {
@@ -65,9 +55,9 @@
 }
 
 .dropdownContent {
+  align-self: center;
+  margin-top: -4px;
   display: none;
-  position: absolute;
-  margin-top: 29px;
   z-index: 1;
 }
 
@@ -75,6 +65,7 @@
   width: 21px;
   height: 21px;
   padding: 2px;
+  margin-left: 2px;
   display: block;
   background-color: rgba(0,0,0,.4);
 }
@@ -82,6 +73,7 @@
 .dropdownContent img:hover {
   background-color: #333333;
   cursor: pointer;
+  margin-left: 0px;
   width: 26px;
   height: 26px;
 }
@@ -90,17 +82,17 @@
   color: #333333;
 }
 
-.styleDropdown {
+.noteBodyStyle {
   display: block;
-  float: right;
 }
 
-.styleDropdown:hover .styleContent {
+.noteBodyStyle:hover .styleContent {
   display: block;
 }
 
 .styleContent {
   display: none;
+  background-color: rgba(0,0,0,.1);
   position: absolute;
   z-index: 1;
 }

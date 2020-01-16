@@ -28,21 +28,26 @@ class Note extends React.Component {
     }
   }
 
+  // componentDidMount() {
+  //   var edit = document.getElementById("note"+this.props.ID);
+  //   edit.addEventListener('input', this.handleNoteBodyChange(edit.value));
+  // }
+
   //Creates an event to handle the position changes of the notes
   componentDidUpdate(props, state) {
     if (this.state.dragging && !state.dragging) {
-      document.addEventListener('mousemove', this.onMouseMove)
-      document.addEventListener('mouseup', this.onMouseUp)
+      document.addEventListener('mousemove', this.onMouseMove);
+      document.addEventListener('mouseup', this.onMouseUp);
     } else if (!this.state.dragging && state.dragging) {
-      document.removeEventListener('mousemove', this.onMouseMove)
-      document.removeEventListener('mouseup', this.onMouseUp)
+      document.removeEventListener('mousemove', this.onMouseMove);
+      document.removeEventListener('mouseup', this.onMouseUp);
     }
   }
 
   //When the mouse is clicked it created a relative position based on the offset of the page
   dragMouseDown = (e) => {
     if (e.button !== 0) return
-    var rect = document.getElementById(this.props.moveID).getBoundingClientRect();
+    var rect = document.getElementById(this.props.ID).getBoundingClientRect();
     this.setState({
       dragging: true,
       posRX: e.pageX,
@@ -66,7 +71,7 @@ class Note extends React.Component {
     var newY = this.props.note.y + offsetY;
     if (newX < 0 || e.pageX <= 235) newX = 0;
     if (newY < 45 || e.pageY <= 60) newY = 45;
-    this.props.noteMoved(newX, newY, this.props.moveID);
+    this.props.noteMoved(newX, newY, this.props.ID);
     e.stopPropagation();
     e.preventDefault();
   }
@@ -78,39 +83,35 @@ class Note extends React.Component {
     e.preventDefault();
   }
 
-  //Sends the title changes to the parent component for processing
-  handleNoteTitleChange = (e) => {
-    this.props.noteTitleChange(e.target.value, this.props.moveID);
-  }
-
   //Sends the body changes to the parent component for processing
   handleNoteBodyChange = (e) => {
-    this.props.noteBodyChange(e.target.value, this.props.moveID);
+    console.log(e.currentTarget.textContent);
+    this.props.noteBodyChange(e.currentTarget.textContent, this.props.ID);
   }
 
   //Sends the color changes to the parent component for processing
   changeBlue = (e) => {
-    this.props.noteColorChange("#2196F3", this.props.moveID);
+    this.props.noteColorChange("#2196F3", this.props.ID);
   }
 
   //Sends the color changes to the parent component for processing
   changeYellow = (e) => {
-    this.props.noteColorChange("#f3ec21", this.props.moveID);
+    this.props.noteColorChange("#f3ec21", this.props.ID);
   }
 
   //Sends the color changes to the parent component for processing
   changeGreen = (e) => {
-    this.props.noteColorChange("#21f32f", this.props.moveID);
+    this.props.noteColorChange("#21f32f", this.props.ID);
   }
 
   //Sends the color changes to the parent component for processing
   changeOrange = (e) => {
-    this.props.noteColorChange("#f39121", this.props.moveID);
+    this.props.noteColorChange("#f39121", this.props.ID);
   }
 
   //Sends the note id to the parent component for processing
   handleNoteRemove = (e) => {
-    this.props.noteRemoved(this.props.moveID);
+    this.props.noteRemoved(this.props.ID);
   }
 
   boldHandler = (e) => {
@@ -138,36 +139,34 @@ class Note extends React.Component {
   }
 
   render(){
-    var { x, y, title, body, color } = this.props.note;
+    var { x, y, body, color, } = this.props.note;
     x += 'px';
     y += 'px';
     var returnCom =
-    <div id="note" style={{left: x, top: y, backgroundColor: color}} className="mydiv">
-      <div className="styleDropdown">
-        <div className="mydivheader" >
-          <input className="noteTitle" placeholder="Title" type="text" onChange={this.handleNoteTitleChange} value={title}></input>
-          <img className="noteMove" id={this.props.moveID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
-          <div className="dropdown">
-            <img className="noteOptions" src={Options} alt="options" ></img>
-            <div className="dropdownContent">
-              <img src={Blue} onClick={this.changeBlue} alt="blue" ></img>
-              <img src={Yellow} onClick={this.changeYellow} alt="yellow" ></img>
-              <img src={Green} onClick={this.changeGreen} alt="green" ></img>
-              <img src={Orange} onClick={this.changeOrange} alt="orange" ></img>
-              <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
-            </div>
+    <div className="note" id="note" style={{left: x, top: y}} >
+      <div className="moveOptions" >
+        <img className="noteMove" id={this.props.ID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
+        <div className="dropdown">
+          <img className="noteOptions" src={Options} alt="options" ></img>
+          <div className="dropdownContent">
+            <img src={Blue} onClick={this.changeBlue} alt="blue" ></img>
+            <img src={Yellow} onClick={this.changeYellow} alt="yellow" ></img>
+            <img src={Green} onClick={this.changeGreen} alt="green" ></img>
+            <img src={Orange} onClick={this.changeOrange} alt="orange" ></img>
+            <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
           </div>
         </div>
-        <div>
-          <textarea className="noteBody" placeholder="Body" type="text" onChange={this.handleNoteBodyChange} value={body}></textarea>
-          <div className="styleContent">
-            <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
-            <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
-            <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
-            <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
-            <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
-            <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
-          </div>
+      </div>
+      <div className="noteBodyStyle" style={{ backgroundColor: color }}>
+        <div className="noteBody" id={"note"+this.props.ID} onInput={this.handleNoteBodyChange}
+        contentEditable="true" suppressContentEditableWarning="true">{body}</div>
+        <div className="styleContent">
+          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
+          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
+          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
+          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
+          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
+          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
         </div>
       </div>
     </div>
@@ -176,4 +175,4 @@ class Note extends React.Component {
   }
 }
 
-  export default Note;
+export default Note;
