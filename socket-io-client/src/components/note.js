@@ -85,8 +85,8 @@ class Note extends React.Component {
 
   //Sends the body changes to the parent component for processing
   handleNoteBodyChange = (e) => {
-    console.log(e.currentTarget.textContent);
-    this.props.noteBodyChange(e.currentTarget.textContent, this.props.ID);
+    console.log(e.target.value);
+    this.props.noteBodyChange(e.target.value, this.props.ID);
   }
 
   //Sends the color changes to the parent component for processing
@@ -138,12 +138,29 @@ class Note extends React.Component {
 
   }
 
+  handleResize = (e) => {
+    console.log(e);
+  }
+
   render(){
-    var { x, y, body, color, } = this.props.note;
+    var { x, y, body, color, height, width } = this.props.note;
     x += 'px';
     y += 'px';
     var returnCom =
     <div className="note" id="note" style={{left: x, top: y}} >
+      <div className="noteBodyStyle">
+        <textarea className="noteBody" onChange={this.handleNoteBodyChange}
+        type="html" placeholder="body" value={body} onResize={this.handleResize}
+        style={{ backgroundColor: color, height: height, width: width }}></textarea>
+        <div className="styleContent">
+          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
+          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
+          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
+          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
+          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
+          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
+        </div>
+      </div>
       <div className="moveOptions" >
         <img className="noteMove" id={this.props.ID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
         <div className="dropdown">
@@ -155,18 +172,6 @@ class Note extends React.Component {
             <img src={Orange} onClick={this.changeOrange} alt="orange" ></img>
             <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
           </div>
-        </div>
-      </div>
-      <div className="noteBodyStyle" style={{ backgroundColor: color }}>
-        <div className="noteBody" id={"note"+this.props.ID} onInput={this.handleNoteBodyChange}
-        contentEditable="true" suppressContentEditableWarning="true">{body}</div>
-        <div className="styleContent">
-          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
-          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
-          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
-          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
-          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
-          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 .note{
   position: absolute;
-  display: flex;
+  display: inline-flex;
+  padding: 0px;
+  margin: 0px;
 }
 
 .note:hover .moveOptions {
@@ -8,22 +10,20 @@
 }
 
 .moveOptions{
-  display: block;
   width: 27px;
-  margin-left: 250px;
+  height: 60px;
+  float:right;
   display: none;
-  position: absolute;
+  position: relative;
   padding-right: 2px;
-  z-index: 1;
   background-color: rgba(0,0,0,.1);
 }
 
 .noteBody{
   cursor: text;
-  margin: 4px;
-  width: 242px;
-  height: 242px;
-  max-height: 242px;
+  background: none;
+  margin: 0px;
+  padding: 4px;
   scroll-behavior: auto;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .dropdownContent img:hover {
-  background-color: #333333;
+  background-color: rgba(0,0,0,.4);
   cursor: pointer;
   margin-left: 0px;
   width: 26px;
@@ -83,6 +83,8 @@
 }
 
 .noteBodyStyle {
+  padding: 0px;
+  margin: 0px;
   display: block;
 }
 
@@ -91,6 +93,7 @@
 }
 
 .styleContent {
+  margin-top: -5px;
   display: none;
   background-color: rgba(0,0,0,.1);
   position: absolute;
@@ -105,7 +108,7 @@
 }
 
 .styleContent img:hover {
-  background-color: #888888;
+  background-color: rgba(0,0,0,.4);
   cursor: pointer;
   width: 25px;
   height: 25px;
