@@ -70,8 +70,8 @@ class Index extends Component {
       y: 60,
       body: "",
       color: "#2196F3",
-      height: "250px",
-      width: "250px"
+      height: 250,
+      width: 250
     };
     const notes = this.state.notes.concat(note);
     this.setState({notes: notes});

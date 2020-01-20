@@ -28,10 +28,10 @@ class Note extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   var edit = document.getElementById("note"+this.props.ID);
-  //   edit.addEventListener('input', this.handleNoteBodyChange(edit.value));
-  // }
+  componentDidMount() {
+    var edit = document.getElementById("note"+this.props.ID);
+     edit.addEventListener('resize', this.handleResize(edit));
+   }
 
   //Creates an event to handle the position changes of the notes
   componentDidUpdate(props, state) {
@@ -69,8 +69,8 @@ class Note extends React.Component {
     });
     var newX = this.props.note.x + offsetX;
     var newY = this.props.note.y + offsetY;
-    if (newX < 0 || e.pageX <= 235) newX = 0;
-    if (newY < 45 || e.pageY <= 60) newY = 45;
+    if (newX < 0) newX = 0;
+    if (newY < 45) newY = 45;
     this.props.noteMoved(newX, newY, this.props.ID);
     e.stopPropagation();
     e.preventDefault();
@@ -143,15 +143,14 @@ class Note extends React.Component {
   }
 
   render(){
-    var { x, y, body, color, height, width } = this.props.note;
+    var { x, y, body, color } = this.props.note;
     x += 'px';
     y += 'px';
     var returnCom =
-    <div className="note" id="note" style={{left: x, top: y}} >
+    <div className="note" id={"note"+this.props.ID} style={{left: x, top: y}} >
       <div className="noteBodyStyle">
-        <textarea className="noteBody" onChange={this.handleNoteBodyChange}
-        type="html" placeholder="body" value={body} onResize={this.handleResize}
-        style={{ backgroundColor: color, height: height, width: width }}></textarea>
+        <textarea className="noteBody" onChange={this.handleNoteBodyChange} type="html"
+          placeholder="body" value={body} style={{ backgroundColor: color }}></textarea>
         <div className="styleContent">
           <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
           <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
