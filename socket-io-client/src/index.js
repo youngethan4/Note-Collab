@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import './index.css';
 import Login from './components/login';
 import Notes from './components/notes';
 import * as serviceWorker from './serviceWorker';
 const io = require('socket.io-client');
 
-var socketURI = 'localhost:4001';
+const socketURI = 'localhost:4001';
 //var socketURI = '173.22.77.190:3000';
 var socket;
+const newNoteX = 20;
+const newNoteY = 60;
+const newNoteColor = "#2196F3";
+const newNoteWidth = 250;
+const newNoteHeight = 250;
+var newNoteBody = EditorState.createEmpty();
 
 class Index extends Component {
   constructor(){
@@ -34,11 +41,15 @@ class Index extends Component {
     });
 
     socket.on('send notes', (notes) => {
+       for (var note of notes){
+         note.body = EditorState.createWithContent(convertFromRaw(JSON.parse(note.body)));
+       }
       const addNotes = this.state.notes.concat(notes);
       this.setState({notes: addNotes});
     });
 
     socket.on('note changed', (note, num) => {
+      note.body = EditorState.createWithContent(convertFromRaw(JSON.parse(note.body)));
       const notes = this.state.notes.map((item, key) => {
           if (key === num) {
             return note;
@@ -50,11 +61,15 @@ class Index extends Component {
     });
 
     socket.on('new note', (note) => {
+      note.body = EditorState.createWithContent(convertFromRaw(JSON.parse(note.body)));
       const addNotes = this.state.notes.concat(note);
       this.setState({notes: addNotes});
     });
 
     socket.on('note removed', (notes) => {
+      for (var note of notes){
+        note.body = EditorState.createWithContent(convertFromRaw(JSON.parse(note.body)));
+      }
       this.setState({notes: notes});
     });
 
@@ -66,15 +81,29 @@ class Index extends Component {
   //Adds a note to the notes[] var and sends it to the socket
   addNote = (e) => {
     var note = {
-      x: 20,
-      y: 60,
-      body: "",
-      color: "#2196F3",
-      height: 250,
-      width: 250
+      x: newNoteX,
+      y: newNoteY,
+      body: newNoteBody,
+      color: newNoteColor,
+      height: newNoteHeight,
+      width: newNoteWidth
     };
     const notes = this.state.notes.concat(note);
     this.setState({notes: notes});
+    this.sendAddedNote(note);
+  }
+
+  sendAddedNote = (note) =>{
+    const content = newNoteBody.getCurrentContent();
+    var rawContent = JSON.stringify(convertToRaw(content));
+    var note = {
+      x: newNoteX,
+      y: newNoteY,
+      body: rawContent,
+      color: newNoteColor,
+      height: newNoteHeight,
+      width: newNoteWidth
+    };
     socket.emit('created note', note);
   }
 
@@ -91,7 +120,7 @@ class Index extends Component {
         }
       });
     this.setState({notes: notes});
-    socket.emit('changed note', note, num);
+    this.sendChangedNote(note, num);
   }
 
   //Handles the note color change
@@ -107,7 +136,7 @@ class Index extends Component {
         }
       });
     this.setState({notes: notes});
-    socket.emit('changed note', note, num);
+    this.sendChangedNote(note, num);
   }
 
   //Handles the note position change
@@ -124,7 +153,21 @@ class Index extends Component {
         }
       });
     this.setState({notes: notes});
-    socket.emit('changed note', note, num);
+    this.sendChangedNote(note, num);
+  }
+
+  sendChangedNote = (note, num) => {
+    const content = note.body.getCurrentContent();
+    var rawContent = JSON.stringify(convertToRaw(content));
+    var changedNote = {
+      x: note.x,
+      y: note.y,
+      body: rawContent,
+      color: note.color,
+      height: note.height,
+      width: note.width
+    }
+    socket.emit('changed note', changedNote, num);
   }
 
   //send the id of the note to be removed to the server

@@ -23,19 +23,6 @@
   background-color: rgba(0,0,0,.1);
 }
 
-.noteBody{
-  cursor: text;
-  background: none;
-  margin: 0px;
-  padding: 4px;
-  min-width: 150px;
-  min-height: 50px;
-  width: 250px;
-  height: 250px;
-  resize: both;
-  scroll-behavior: auto;
-}
-
 .noteMove{
   width: 25px;
   height: 25px;
@@ -85,42 +72,4 @@
   margin-left: 0px;
   width: 26px;
   height: 26px;
-}
-
-::placeholder {
-  color: #333333;
-}
-
-.noteBodyStyle {
-  padding: 0px;
-  margin: 0px;
-  display: block;
-}
-
-.noteBodyStyle:hover .styleContent {
-  display: block;
-  visibility: visible;
-}
-
-.styleContent {
-  margin-top: -5px;
-  display:block;
-  visibility: hidden;
-  background-color: rgba(0,0,0,.1);
-  position: absolute;
-  z-index: 1;
-}
-
-.styleContent img {
-  width: 20px;
-  height: 20px;
-  padding: 3px;
-  margin: 0px;
-}
-
-.styleContent img:hover {
-  background-color: rgba(0,0,0,.4);
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
 }

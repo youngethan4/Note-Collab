@@ -60,6 +60,7 @@ io.on('connection', (socket) => {
 
       //handles a created note
       socket.on('created note', (note) => {
+        console.log(note);
         rooms[socket.room][notes].push(note);
         socket.to(socket.room).emit('new note', note);
       });
@@ -72,7 +73,7 @@ io.on('connection', (socket) => {
 
 			//Lets console know when user dissconnects.
     	socket.on('disconnect', () => {
-	 	   	console.log(socket.user + ' has left room ' + socket.room +".");
+	 	   	//console.log(socket.user + ' has left room ' + socket.room +".");
         if (rooms[socket.room] == undefined || rooms[socket.room][users] == undefined
           || rooms[socket.room][users].length <= 1){
           rooms[socket.room] = undefined;
@@ -80,7 +81,7 @@ io.on('connection', (socket) => {
         else {
           rooms[socket.room][users].splice(rooms[socket.room][users].indexOf(socket.user), 1);
           io.to(socket.room).emit('user joined or left', rooms[socket.room][users]);
-          console.log(rooms[socket.room][users]);
+          //console.log(rooms[socket.room][users]);
         }
 	  	});
 		});

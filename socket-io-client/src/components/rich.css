@@ -1,0 +1,52 @@
+.noteBodyStyle {
+  padding: 0px;
+  margin: 0px;
+  display: block;
+}
+
+.noteBodyStyle:hover .styleContent {
+  visibility: visible;
+}
+
+.styleContent {
+  margin-top: 0px;
+  display:inline;
+  visibility: hidden;
+  background-color: rgba(0,0,0,.1);
+  position: absolute;
+  z-index: 1;
+}
+
+.styleContent img {
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  margin: 0px;
+}
+
+.styleContent button {
+  display:inline;
+  background: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.styleContent img:hover {
+  background-color: rgba(0,0,0,.4);
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
+
+.noteBody{
+  cursor: text;
+  background: none;
+  margin: 0px;
+  padding: 4px;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 400px;
+  max-height: 400px;
+  overflow: hidden;
+}

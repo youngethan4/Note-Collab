@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import './note.css';
+import Rich from './rich.js';
 import Move from './pics/move.png';
 import Trash from './pics/trash.png';
 import Options from './pics/options.png';
@@ -8,12 +9,7 @@ import Blue from './pics/blue.png';
 import Yellow from './pics/yellow.png';
 import Green from './pics/green.png';
 import Orange from './pics/orange.png';
-import Bold from './pics/bold.png';
-import Italic from './pics/italic.png';
-import Underline from './pics/underline.png';
-import AlignLeft from './pics/leftAlign.png';
-import AlignCenter from './pics/centerAlign.png';
-import AlignRight from './pics/rightAlign.png';
+
 
 class Note extends React.Component {
   constructor(props){
@@ -27,11 +23,6 @@ class Note extends React.Component {
       oldY: 0
     }
   }
-
-  componentDidMount() {
-    var edit = document.getElementById("note"+this.props.ID);
-     edit.addEventListener('resize', this.handleResize(edit));
-   }
 
   //Creates an event to handle the position changes of the notes
   componentDidUpdate(props, state) {
@@ -114,30 +105,6 @@ class Note extends React.Component {
     this.props.noteRemoved(this.props.ID);
   }
 
-  boldHandler = (e) => {
-
-  }
-
-  italicHandler = (e) => {
-
-  }
-
-  underlineHandler = (e) => {
-
-  }
-
-  alignLeftHandler = (e) => {
-
-  }
-
-  alignCenterHandler = (e) => {
-
-  }
-
-  alignRightHandler = (e) => {
-
-  }
-
   handleResize = (e) => {
     console.log(e);
   }
@@ -148,18 +115,7 @@ class Note extends React.Component {
     y += 'px';
     var returnCom =
     <div className="note" id={"note"+this.props.ID} style={{left: x, top: y}} >
-      <div className="noteBodyStyle">
-        <textarea className="noteBody" onChange={this.handleNoteBodyChange} type="html"
-          placeholder="body" value={body} style={{ backgroundColor: color }}></textarea>
-        <div className="styleContent">
-          <img src={Bold} onClick={this.boldHandler} alt="bold" ></img>
-          <img src={Italic} onClick={this.italicHandler} alt="italic" ></img>
-          <img src={Underline} onClick={this.underlineHandler} alt="underline" ></img>
-          <img src={AlignLeft} onClick={this.alignLeftHandler} alt="align left" ></img>
-          <img src={AlignCenter} onClick={this.alignCenterHandler} alt="align center" ></img>
-          <img src={AlignRight} onClick={this.alignRightHandler} alt="align right" ></img>
-        </div>
-      </div>
+      <Rich body={body} color={color} noteBodyChange={this.props.noteBodyChange} id={this.props.ID}/>
       <div className="moveOptions" >
         <img className="noteMove" id={this.props.ID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
         <div className="dropdown">
