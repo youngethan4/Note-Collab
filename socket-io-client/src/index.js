@@ -16,6 +16,7 @@ const newNoteColor = "#2196F3";
 const newNoteWidth = 250;
 const newNoteHeight = 250;
 var newNoteBody = EditorState.createEmpty();
+const newNoteAlign = "left";
 
 class Index extends Component {
   constructor(){
@@ -86,7 +87,8 @@ class Index extends Component {
       body: newNoteBody,
       color: newNoteColor,
       height: newNoteHeight,
-      width: newNoteWidth
+      width: newNoteWidth,
+      align: newNoteAlign
     };
     const notes = this.state.notes.concat(note);
     this.setState({notes: notes});
@@ -156,6 +158,21 @@ class Index extends Component {
     this.sendChangedNote(note, num);
   }
 
+  noteAllignmentChanged = (alignment, num) => {
+    var note = null;
+    const notes = this.state.notes.map((item, key) => {
+        if (key === num) {
+          item.align = alignment;
+          note = item;
+          return item;
+        } else {
+          return item;
+        }
+      });
+    this.setState({notes: notes});
+    this.sendChangedNote(note, num);
+  }
+
   sendChangedNote = (note, num) => {
     const content = note.body.getCurrentContent();
     var rawContent = JSON.stringify(convertToRaw(content));
@@ -184,7 +201,8 @@ class Index extends Component {
       returnCom = <Notes notes={this.state.notes} userRoom={this.state.room}
         addNote={this.addNote} noteBodyChange={this.noteBodyChange}
         noteMoved={this.noteMoved} noteColorChange={this.noteColorChange}
-        noteRemoved={this.noteRemoved} users={this.state.users}/>;
+        noteRemoved={this.noteRemoved} users={this.state.users}
+        noteAllignmentChanged={this.noteAllignmentChanged}/>;
     }
     return (returnCom);
   };

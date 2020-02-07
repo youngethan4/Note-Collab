@@ -15,7 +15,7 @@ class Notes extends React.Component {
         {notes.map((item, key) =>
           <Note note={item} key={key} ID={key} noteBodyChange={this.props.noteBodyChange}
             noteMoved={this.props.noteMoved} noteColorChange={this.props.noteColorChange}
-            noteRemoved={this.props.noteRemoved}/>
+            noteRemoved={this.props.noteRemoved} noteAllignmentChanged={this.props.noteAllignmentChanged}/>
         )}
       </div>
     </div>

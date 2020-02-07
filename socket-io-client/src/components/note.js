@@ -115,7 +115,8 @@ class Note extends React.Component {
     y += 'px';
     var returnCom =
     <div className="note" id={"note"+this.props.ID} style={{left: x, top: y}} >
-      <Rich body={body} color={color} noteBodyChange={this.props.noteBodyChange} id={this.props.ID}/>
+      <Rich note={this.props.note} noteBodyChange={this.props.noteBodyChange} id={this.props.ID}
+      noteAllignmentChanged={this.props.noteAllignmentChanged}/>
       <div className="moveOptions" >
         <img className="noteMove" id={this.props.ID} src={Move} onMouseDown={this.dragMouseDown} alt="move" ></img>
         <div className="dropdown">
