@@ -20,16 +20,16 @@ class Nav extends React.Component {
         value={userRoom} readOnly
       />
       <div className="nav">
-        <ul>
-          <li>
+        <ul className="navUL">
+          <li className="navLI">
             <a className="addNote"><button className="buttonAdd"
               onClick={this.props.addNote}>Add Note</button></a>
-          </li><li>
+          </li><li className="navLI">
             <a className="titleNav">Note Collab</a>
-          </li><li>
+          </li><li className="navLI">
             <a className="roomCopy">Room Number: {userRoom}<br></br>
             <button className="buttonRoom" onClick={this.copyRoom}>click me to copy</button></a>
-          </li><li>
+          </li><li className="navLI">
             <a className="usersConnected">
               <div className="dropUsers">
                 <p className="userNumber">{users.length} users connected</p>

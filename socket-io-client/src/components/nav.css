@@ -17,7 +17,7 @@
   border-radius: 10px;
 }
 
-ul {
+.navUL {
   z-index: 999;
   list-style-type: none;
   margin: 0;
@@ -30,7 +30,7 @@ ul {
   height: 45px;
 }
 
-li {
+.navLI {
   padding-left: 5px;
   padding-right: 5px;
 }

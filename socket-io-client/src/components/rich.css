@@ -6,21 +6,23 @@
 
 .noteBodyStyle:hover .styleContent {
   visibility: visible;
+  padding: 0px;
 }
 
 .styleContent {
   margin-top: 0px;
   display:inline;
   visibility: hidden;
-  background-color: rgba(0,0,0,.1);
   position: absolute;
   z-index: 1;
+  padding: 0px;
 }
 
 .styleContent img {
   width: 20px;
   height: 20px;
   padding: 3px;
+  background-color: rgba(0,0,0,.1);
   margin: 0px;
 }
 
@@ -35,6 +37,7 @@
 .styleContent img:hover {
   background-color: rgba(0,0,0,.4);
   cursor: pointer;
+  margin-top: 5px;
   width: 25px;
   height: 25px;
 }
