@@ -4,7 +4,6 @@ import './nav.css';
 class Nav extends React.Component {
 
   copyRoom = (e) => {
-    console.log("here");
     const el = this.textArea;
     el.select();
     document.execCommand("copy");
@@ -15,33 +14,22 @@ class Nav extends React.Component {
 
     var returnCom =
     <div>
-      <textarea style={{opacity: "0"}}
+      <textarea className="copyTextArea" style={{opacity: "0"}}
         ref={(textarea) => this.textArea = textarea}
-        value={userRoom} readOnly
-      />
+        value={userRoom} readOnly/>
       <div className="nav">
-        <ul className="navUL">
-          <li className="navLI">
-            <a className="addNote"><button className="buttonAdd"
-              onClick={this.props.addNote}>Add Note</button></a>
-          </li><li className="navLI">
-            <a className="titleNav">Note Collab</a>
-          </li><li className="navLI">
-            <a className="roomCopy">Room Number: {userRoom}<br></br>
-            <button className="buttonRoom" onClick={this.copyRoom}>click me to copy</button></a>
-          </li><li className="navLI">
-            <a className="usersConnected">
-              <div className="dropUsers">
-                <p className="userNumber">{users.length} users connected</p>
-                <div className="dropdownUsers">
-                  {users.map((item, key) =>
-                    <p key={key}>{item}</p>
-                  )}
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
+        <button className="buttonAdd"onClick={this.props.addNote}>Add Note</button>
+        <div className="titleNav">Note Collab</div>
+        <a className="roomCopy">Room Number: {userRoom}<br></br>
+        <button className="buttonRoom" onClick={this.copyRoom}>click to copy</button></a>
+        <div className="dropUsers">
+          <p className="userNumber">{users.length} users connected</p>
+          <div className="dropdownUsers">
+            {users.map((item, key) =>
+              <p key={key}>{item}</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
 

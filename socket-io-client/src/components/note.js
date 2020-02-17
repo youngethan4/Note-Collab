@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import './note.css';
 import Rich from './rich.js';
+import Resize from './resize.js';
 import Move from './pics/move.png';
 import Trash from './pics/trash.png';
 import Options from './pics/options.png';
@@ -38,7 +39,6 @@ class Note extends React.Component {
   //When the mouse is clicked it created a relative position based on the offset of the page
   dragMouseDown = (e) => {
     if (e.button !== 0) return
-    var rect = document.getElementById(this.props.ID).getBoundingClientRect();
     this.setState({
       dragging: true,
       posRX: e.pageX,
@@ -60,8 +60,10 @@ class Note extends React.Component {
     });
     var newX = this.props.note.x + offsetX;
     var newY = this.props.note.y + offsetY;
-    if (newX < 0) newX = 0;
-    if (newY < 45) newY = 45;
+    const minLeft = 0;
+    const minTop = 50;
+    if (newX < minLeft) newX = minLeft;
+    if (newY < minTop) newY = minTop;
     this.props.noteMoved(newX, newY, this.props.ID);
     e.stopPropagation();
     e.preventDefault();
@@ -105,16 +107,12 @@ class Note extends React.Component {
     this.props.noteRemoved(this.props.ID);
   }
 
-  handleResize = (e) => {
-    console.log(e);
-  }
-
   render(){
-    var { x, y, body, color } = this.props.note;
+    var { x, y, body, color, height, width } = this.props.note;
     x += 'px';
     y += 'px';
     var returnCom =
-    <div className="note" id={"note"+this.props.ID} style={{left: x, top: y}} >
+    <div className="note" id={"note"+this.props.ID} style={{left: x, top: y }} >
       <Rich note={this.props.note} noteBodyChange={this.props.noteBodyChange} id={this.props.ID}
       noteAllignmentChanged={this.props.noteAllignmentChanged}/>
       <div className="moveOptions" >
@@ -129,6 +127,9 @@ class Note extends React.Component {
             <img src={Trash} onClick={this.handleNoteRemove} alt="remove" ></img>
           </div>
         </div>
+      </div>
+      <div className="resizeComponent" style={{marginLeft: width-5, marginTop: height-5}}>
+        <Resize note={this.props.note} ID={this.props.ID} noteResize={this.props.noteResize}/>
       </div>
     </div>
 

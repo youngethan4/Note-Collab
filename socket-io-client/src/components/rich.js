@@ -1,6 +1,8 @@
 import React from 'react';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css'
+import Font from './pics/font.png';
+import Number from './pics/number.png';
 import Bold from './pics/bold.png';
 import Italic from './pics/italic.png';
 import Underline from './pics/underline.png';
@@ -76,22 +78,28 @@ class MyEditor extends React.Component {
     this.onChange(RichUtils.toggleBlockType(this.props.note.body, 'unordered-list-item'));
   }
 
+  numberListHandler = (e) => {
+    e.preventDefault();
+    this.onChange(RichUtils.toggleBlockType(this.props.note.body, 'ordered-list-item'));
+  }
+
   render() {
-    var { align, body, color } = this.props.note;
+    var { align, body, color, height, width } = this.props.note;
 
     var returnCom =
       <div className="noteBodyStyle">
-        <div className="noteBody" style={{background: color}}>
+        <div className="noteBody" style={{background: color, height: height, width: width}}>
           <Editor editorState={body} onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand} textAlignment={align}
           customStyleMap={styleMap} onTab={this.handleTab}/>
         </div>
         <div className="styleContent">
-          <button onMouseDown={this.changeFontHandler} alt="increase"><img src={Bold}></img></button>
+          <button onMouseDown={this.changeFontHandler} alt="font-size"><img src={Font}></img></button>
           <button onMouseDown={this.boldHandler} alt="bold"><img src={Bold}></img></button>
           <button onMouseDown={this.italicHandler} alt="italic"><img src={Italic}></img></button>
           <button onMouseDown={this.underlineHandler} alt="underline"><img src={Underline}></img></button>
-          <button onMouseDown={this.bulletListHandler} alt="decrease"><img src={Bullet}></img></button>
+          <button onMouseDown={this.bulletListHandler} alt="bullet"><img src={Bullet}></img></button>
+          <button onMouseDown={this.numberListHandler} alt="number"><img src={Number}></img></button>
           <button onMouseDown={this.alignLeftHandler} alt="align left"><img src={AlignLeft}></img></button>
           <button onMouseDown={this.alignCenterHandler} alt="align center"><img src={AlignCenter}></img></button>
           <button onMouseDown={this.alignRightHandler} alt="align right"><img src={AlignRight}></img></button>
@@ -102,10 +110,3 @@ class MyEditor extends React.Component {
 }
 
 export default MyEditor;
-
-function myBlockStyleFn(contentBlock) {
-  const type = contentBlock.getType();
-  if (type === 'unordered-list-item'){
-    return 'ulNote';
-  }
-}

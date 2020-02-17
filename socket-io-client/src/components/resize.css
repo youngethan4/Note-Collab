@@ -1,0 +1,12 @@
+.imageResize{
+  height: 20px;
+  width: 20px;
+  padding: 2px;
+  margin: 0px;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.1);
+}
+
+.imageResize:hover {
+  background-color: rgba(0,0,0,.4);
+}

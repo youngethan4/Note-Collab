@@ -73,3 +73,15 @@
   width: 26px;
   height: 26px;
 }
+
+.resizeComponent{
+  z-index: 2;
+  float: left;
+  display: block;
+  position: absolute;
+  visibility: hidden;
+}
+
+.note:hover .resizeComponent{
+  visibility: visible;
+}

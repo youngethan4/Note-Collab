@@ -158,6 +158,22 @@ class Index extends Component {
     this.sendChangedNote(note, num);
   }
 
+  noteResize = (width, height, num) => {
+    var note = null;
+    const notes = this.state.notes.map((item, key) => {
+        if (key === num) {
+          item.height = height;
+          item.width = width;
+          note = item;
+          return item;
+        } else {
+          return item;
+        }
+      });
+    this.setState({notes: notes});
+    this.sendChangedNote(note, num);
+  }
+
   noteAllignmentChanged = (alignment, num) => {
     var note = null;
     const notes = this.state.notes.map((item, key) => {
@@ -202,7 +218,8 @@ class Index extends Component {
         addNote={this.addNote} noteBodyChange={this.noteBodyChange}
         noteMoved={this.noteMoved} noteColorChange={this.noteColorChange}
         noteRemoved={this.noteRemoved} users={this.state.users}
-        noteAllignmentChanged={this.noteAllignmentChanged}/>;
+        noteAllignmentChanged={this.noteAllignmentChanged}
+        noteResize={this.noteResize}/>;
     }
     return (returnCom);
   };
