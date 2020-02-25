@@ -52,8 +52,8 @@ class Resize extends React.Component {
     var newWidth = this.props.note.width + offsetX;
     var newHeight = this.props.note.height + offsetY;
     const minWidth = 225;
-    const minHeight = 225;
-    if (newWidth >= minWidth || newHeight >= minHeight) {
+    const minHeight = 100;
+    if (newWidth >= minWidth && newHeight >= minHeight) {
       this.props.noteResize(newWidth, newHeight, this.props.ID);
     }
     e.stopPropagation();
