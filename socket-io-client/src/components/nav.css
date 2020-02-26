@@ -21,7 +21,7 @@
 
 .copyTextArea{
   position: absolute;
-  z-index: 1;
+  z-index: -1;
 }
 
 .buttonRoom{
@@ -54,9 +54,9 @@
 }
 
 .userNumber {
-  right: 170px;
+  right: 200px;
   width: 160px;
-  margin-top: 5px;
+  margin-top: 8px;
   font-size: 20px;
   z-index: 2;
   color: white;
@@ -77,10 +77,10 @@
 .dropdownUsers {
   display: none;
   z-index: 2;
-  right: 170px;
+  right: 200px;
   width: 170px;
   position: absolute;
-  margin-top: 30px;
+  margin-top: 33px;
 }
 
 .dropdownUsers p{

@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
 var  port = 4001;
 const {chat} = require('./modules/chat.js');
+const {generateRoom} = require('./modules/roomGenerator.js');
 
 //sends the index page to the client
 app.get("/", (req, res) =>{
@@ -24,7 +25,7 @@ io.on('connection', (socket) => {
 				if(userRoom === ""){
 					var createdRoom = false;
 					do {
-						var newRoom = makeRoom(4);
+						var newRoom = generateRoom(4);
 						if (rooms[newRoom] == undefined){
               rooms[newRoom] = {};
 							rooms[newRoom][notes] = [];
@@ -90,17 +91,6 @@ function socketNotes(socket){
     rooms[socket.room][notes].splice(num, 1);
     io.to(socket.room).emit('note removed', rooms[socket.room][notes]);
   });
-}
-
-//Creates a randomized room for security
-function makeRoom(length) {
-	var result           = '';
-	var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-	var charactersLength = characters.length;
-	for ( var i = 0; i < length; i++ ) {
-		  result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-	return result;
 }
 
 server.listen(port);

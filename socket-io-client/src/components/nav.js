@@ -1,4 +1,5 @@
 import React from 'react';
+import Chat from './chat/chat.js';
 import './nav.css';
 
 class Nav extends React.Component {
@@ -10,7 +11,7 @@ class Nav extends React.Component {
   }
 
   render(){
-    var { userRoom, users } = this.props;
+    var {userRoom, users, currentUser, socket} = this.props;
 
     var returnCom =
     <div>
@@ -29,6 +30,9 @@ class Nav extends React.Component {
               <p key={key}>{item}</p>
             )}
           </div>
+        </div>
+        <div className="chat">
+          <Chat currentUser={currentUser} socket={socket}/>
         </div>
       </div>
     </div>

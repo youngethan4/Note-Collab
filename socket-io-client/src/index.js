@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js';
+import {EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import './index.css';
 import Login from './components/login';
 import Notes from './components/notes';
@@ -10,23 +10,17 @@ const io = require('socket.io-client');
 const socketURI = 'localhost:4001';
 //var socketURI = '173.22.77.190:3000';
 var socket;
-const newNoteX = 20;
-const newNoteY = 60;
-const newNoteColor = "#2196F3";
-const newNoteWidth = 250;
-const newNoteHeight = 250;
-var newNoteBody = EditorState.createEmpty();
-const newNoteAlign = "left";
+
 
 class Index extends Component {
   constructor(){
     super();
 
     this.state = {
-      users: [],
       name: '',
       room: '',
-      notes: []
+      notes: [],
+      users: []
     };
   };
 
@@ -79,114 +73,29 @@ class Index extends Component {
     });
   }
 
-  //Adds a note to the notes[] var and sends it to the socket
-  addNote = (e) => {
-    var note = {
-      x: newNoteX,
-      y: newNoteY,
-      body: newNoteBody,
-      color: newNoteColor,
-      height: newNoteHeight,
-      width: newNoteWidth,
-      align: newNoteAlign
-    };
-    const notes = this.state.notes.concat(note);
-    this.setState({notes: notes});
-    this.sendAddedNote(note);
-  }
+
 
   sendAddedNote = (note) =>{
-    const content = newNoteBody.getCurrentContent();
+    const content = note.body.getCurrentContent();
     var rawContent = JSON.stringify(convertToRaw(content));
-    var note = {
-      x: newNoteX,
-      y: newNoteY,
+    var sendNote = {
+      x: note.x,
+      y: note.y,
       body: rawContent,
-      color: newNoteColor,
-      height: newNoteHeight,
-      width: newNoteWidth
+      color: note.color,
+      height: note.height,
+      width: note.width
     };
     socket.emit('created note', note);
   }
 
-  //Handles the note body change
-  noteBodyChange = (body, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.body = body;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
-    this.setState({notes: notes});
-    this.sendChangedNote(note, num);
+  addNote = (note) => {
+    const notes = this.state.notes.concat(note);
+    this.setNotes(notes);
   }
 
-  //Handles the note color change
-  noteColorChange = (color, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.color = color;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
+  setNotes = (notes) => {
     this.setState({notes: notes});
-    this.sendChangedNote(note, num);
-  }
-
-  //Handles the note position change
-  noteMoved = (pageX, pageY, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.x = pageX;
-          item.y = pageY;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
-    this.setState({notes: notes});
-    this.sendChangedNote(note, num);
-  }
-
-  noteResize = (width, height, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.height = height;
-          item.width = width;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
-    this.setState({notes: notes});
-    this.sendChangedNote(note, num);
-  }
-
-  noteAllignmentChanged = (alignment, num) => {
-    var note = null;
-    const notes = this.state.notes.map((item, key) => {
-        if (key === num) {
-          item.align = alignment;
-          note = item;
-          return item;
-        } else {
-          return item;
-        }
-      });
-    this.setState({notes: notes});
-    this.sendChangedNote(note, num);
   }
 
   sendChangedNote = (note, num) => {
@@ -215,11 +124,9 @@ class Index extends Component {
     }
     else {
       returnCom = <Notes notes={this.state.notes} userRoom={this.state.room}
-        addNote={this.addNote} noteBodyChange={this.noteBodyChange}
-        noteMoved={this.noteMoved} noteColorChange={this.noteColorChange}
-        noteRemoved={this.noteRemoved} users={this.state.users}
-        noteAllignmentChanged={this.noteAllignmentChanged}
-        noteResize={this.noteResize}/>;
+        users={this.state.users} socket={socket} addNote={this.addNote}
+        setNotes={this.setNotes} sendChangedNote={this.sendChangedNote}
+        sendAddedNote={this.sendAddedNote} currentUser={this.state.name}/>;
     }
     return (returnCom);
   };

@@ -1,9 +1,9 @@
 exports.chat = (socket) =>{
-  socket.on('chat sent', (chat, room) => {
-    socket.to(room).emit('new chat', chat);
+  socket.on('chat sent', (chat, user, room) => {
+    socket.to(room).emit('new chat', chat, user);
   });
 
-  socket.on('user typing', (name, room) => {
-    socket.to(room).emit('typing', name);
+  socket.on('user typing', (user, room) => {
+    socket.to(room).emit('typing', user);
   });
 }

@@ -1,0 +1,49 @@
+.chatToggleButton{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.chatButton{
+  position: absolute;
+  z-index: 3;
+  right: 170px;
+  margin-top: 8px;
+}
+
+.messaging{
+  position:absolute;
+  z-index: 3;
+  top: 50px;
+  right: 0px;
+  height: 500px;
+  width: 250px;
+  border: 2px solid #2196F3;
+}
+
+.chatTitle{
+  padding-left: 80px;
+  padding-right: 70px;
+  margin: 0;
+  text-align: center;
+  display: inline;
+  color: white;
+  background:  #2196F3;
+  border: 2px solid black;
+}
+
+.minButton{
+  border: none;
+  font-size: 15px;
+  padding: 0px;
+  display: inline;
+  padding-right: 5px;
+  padding-left: 5px;
+  background: #2196F3;
+  border: 2px solid black;
+}
+
+.sendButton{
+  width: 20px;
+  Height: 20px;
+}
