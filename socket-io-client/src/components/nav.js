@@ -32,7 +32,7 @@ class Nav extends React.Component {
           </div>
         </div>
         <div className="chat">
-          <Chat currentUser={currentUser} socket={socket}/>
+          <Chat currentUser={currentUser} room={userRoom} socket={socket}/>
         </div>
       </div>
     </div>
