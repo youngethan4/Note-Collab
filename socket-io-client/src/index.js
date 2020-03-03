@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import './index.css';
-import Login from './components/login';
-import Notes from './components/notes';
+import Login from './components/login/login.js';
+import Notes from './components/note/notes.js';
 import * as serviceWorker from './serviceWorker';
 const io = require('socket.io-client');
 

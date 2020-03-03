@@ -1,7 +1,7 @@
 import React from 'react';
-import ChatButton from '../pics/chat.png';
-import Send from '../pics/send.png';
-import Min from '../pics/min.png';
+import ChatButton from './pics/chat.png';
+import Send from './pics/send.png';
+import Min from './pics/min.png';
 import './chat.css';
 
 class Chat extends React.Component {

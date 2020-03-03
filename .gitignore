@@ -39,6 +39,8 @@ build/Release
 
 # Dependency directories
 /socket-io-client/node_modules
+/node_modules
+*/node_modules
 jspm_packages/
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
