@@ -4,6 +4,16 @@ import Send from './pics/send.png';
 import Min from './pics/min.png';
 import './chat.css';
 
+var newMessage = () => {
+  return(
+    {
+      message: "",
+      class: "",
+      name: ""
+    }
+  );
+};
+
 class Chat extends React.Component {
   constructor(){
     super();
@@ -16,13 +26,12 @@ class Chat extends React.Component {
   };
 
   componentDidMount(){
-    var newMessage = {};
     this.props.socket.on('new chat', (message, user) => {
-
-      newMessage.message = message;
-      newMessage.class = "outgoing";
-      newMessage.name = user;
-      this.updateMessages(newMessage);
+      var newMsg = newMessage();
+      newMsg.message = message;
+      newMsg.class = "incomming";
+      newMsg.name = user;
+      this.updateMessages(newMsg);
     });
 
     this.props.socket.on('typing', (user) => {
@@ -32,17 +41,19 @@ class Chat extends React.Component {
 
   sendMessageHandler = (e) => {
     this.props.socket.emit("chat sent", this.state.userMessage, this.props.currentUser, this.props.room);
-    var newMessage = {};
-    newMessage.message = this.state.userMessage;
-    newMessage.class = "outgoing";
-    newMessage.name = this.props.currentUser;
-    this.updateMessages(newMessage);
+    var newMsg = newMessage();
+    newMsg.message = this.state.userMessage;
+    newMsg.class = "outgoing";
+    newMsg.name = this.props.currentUser;
+    console.log(newMsg);
+    this.updateMessages(newMsg);
     this.setState({userMessage: ""});
   }
 
-  updateMessages = (newMessage) => {
-    const messages = [newMessage].concat(this.state.messages);
+  updateMessages = (newMsg) => {
+    var messages = [newMsg, ...this.state.messages];
     this.setState({messages: messages});
+    console.log(messages);
   }
 
   sendTypingHandler = (e) => {
@@ -70,12 +81,12 @@ class Chat extends React.Component {
           </div>
           <div className="messageSending">
             <input className="messageInput" onChange={this.messageInputChange} value={userMessage}></input>
-            <img className="sendButton" onClick={this.sendMessageHandler} src={Send}></img>
+            <img className="messageSend" onClick={this.sendMessageHandler} src={Send}></img>
           </div>
           {messages.map((item, key) => (
             <div key={key} className={item.class}>
-              <p key={key} className={item.class+"Name"}>{item.name}</p>
-              <p key={key} className={item.class+"Message"}>{item.message}</p>
+              <p className={item.class}>{item.name}</p>
+              <p className={item.class}>{item.message}</p>
             </div>
           ))}
         </div>;
