@@ -11,7 +11,7 @@
   font-size: 30px;
   border: 3px solid red;
   border-radius: 20px;
-  background-color: #666666;
+  background-color: #a1a1a1;
 }
 
 .headings{
@@ -20,7 +20,7 @@
 
 .buttons{
   font-size: 30px;
-  background-color: #cccccc;
+  background-color: white;
   border: 1px solid red;
   border-radius: 20px;
   padding: 5px 15px 5px 15px;
@@ -28,7 +28,7 @@
 
 .name{
   font-size: 30px;
-  background-color: #666666;
+  background-color: #a1a1a1;
   border-bottom: 1px solid red;
   border-top: none;
   border-left: none;
@@ -38,7 +38,7 @@
 
 .room{
   font-size: 30px;
-  background-color: #666666;
+  background-color: #a1a1a1;
   border-bottom: 1px solid red;
   border-top: none;
   border-left: none;

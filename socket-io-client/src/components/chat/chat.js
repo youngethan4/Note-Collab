@@ -85,8 +85,8 @@ class Chat extends React.Component {
           </div>
           {messages.map((item, key) => (
             <div key={key} className={item.class}>
-              <p className={item.class}>{item.name}</p>
-              <p className={item.class}>{item.message}</p>
+              <p className='senderName'>{item.name}</p>
+              <p>{item.message}</p>
             </div>
           ))}
         </div>;

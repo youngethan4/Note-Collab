@@ -57,42 +57,58 @@
 
 .messageSending{
   width: 250px;
-  display: block;
+  display: flex;
 }
 
 .messageInput{
   border-radius: 20px;
   margin-left: 5px;
-  width: 215px;
-  display: inline;
+  width: 200px;
   margin-top: 8px;
+  padding: 5px;
+  overflow: show;
+}
+
+.messageInput:focus{
+  outline: none;
 }
 
 .messageSend{
   width: 20px;
   border-radius: 20px;
-  Height: 20px;
   padding: 5px;
-  display: inline;
   cursor: pointer;
-  position: absolute;
-  right: 0px;
   margin-top: 3px;
 }
 
-.sendButton:hover{
+.messageSend:hover{
   background: rgba(0,0,0,.2);
 }
 
 .incomming{
-  padding: 0;
-  margin: 0;
-  float: left;
+  padding: 2px;
+  width: 100%;
+  text-align: end;
+}
+
+.incomming p{
+  padding: 0px;
+  margin: 0 5px 0 0;
   display: block;
 }
 
 .outgoing{
-  padding: 0;
+  padding: 2px;
+  width: 100%;
+  text-align: start;
+}
+
+.outgoing p{
+  padding: 0px;
   display: block;
   margin: 0;
+}
+
+.senderName{
+  font-weight: bold;
 }
