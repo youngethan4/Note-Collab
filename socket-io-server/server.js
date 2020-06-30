@@ -7,6 +7,8 @@ var  bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
 var  port = 4001;
+const {chat} = require('./modules/chat.js');
+const {generateRoom} = require('./modules/roomGenerator.js');
 
 //sends the index page to the client
 app.get("/", (req, res) =>{
@@ -23,7 +25,7 @@ io.on('connection', (socket) => {
 				if(userRoom === ""){
 					var createdRoom = false;
 					do {
-						var newRoom = makeRoom(4);
+						var newRoom = generateRoom(4);
 						if (rooms[newRoom] == undefined){
               rooms[newRoom] = {};
 							rooms[newRoom][notes] = [];
@@ -52,24 +54,8 @@ io.on('connection', (socket) => {
         callback(userRoom);
     	});
 
-			//When a note is changed or added this handler is called.
-			socket.on('changed note', (note, num) => {
-				rooms[socket.room][notes][num] = note;
-				socket.to(socket.room).emit('note changed', note, num);
-			});
-
-      //handles a created note
-      socket.on('created note', (note) => {
-        console.log(note);
-        rooms[socket.room][notes].push(note);
-        socket.to(socket.room).emit('new note', note);
-      });
-
-      //handles a deleted note
-      socket.on('delete note', (num) => {
-        rooms[socket.room][notes].splice(num, 1);
-        io.to(socket.room).emit('note removed', rooms[socket.room][notes]);
-      });
+			socketNotes(socket);
+      chat(socket);
 
 			//Lets console know when user dissconnects.
     	socket.on('disconnect', () => {
@@ -86,15 +72,25 @@ io.on('connection', (socket) => {
 	  	});
 		});
 
-//Creates a randomized room for security
-function makeRoom(length) {
-	var result           = '';
-	var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-	var charactersLength = characters.length;
-	for ( var i = 0; i < length; i++ ) {
-		  result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-	return result;
+function socketNotes(socket){
+  //When a note is changed or added this handler is called.
+  socket.on('changed note', (note, num) => {
+    rooms[socket.room][notes][num] = note;
+    socket.to(socket.room).emit('note changed', note, num);
+  });
+
+  //handles a created note
+  socket.on('created note', (note) => {
+    console.log(note);
+    rooms[socket.room][notes].push(note);
+    socket.to(socket.room).emit('new note', note);
+  });
+
+  //handles a deleted note
+  socket.on('delete note', (num) => {
+    rooms[socket.room][notes].splice(num, 1);
+    io.to(socket.room).emit('note removed', rooms[socket.room][notes]);
+  });
 }
 
 server.listen(port);

@@ -1,0 +1,95 @@
+.nav{
+  background: #363636;
+  margin-top: 0px;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+}
+
+.buttonAdd{
+  cursor: pointer;
+  position: absolute;
+  font-size: 25px;
+  margin-top: 8px;
+  margin-left: 5px;
+  background-color: red;
+  border-radius: 20px;
+  color: white;
+  display: inline;
+  z-index: 3;
+}
+
+.copyTextArea{
+  position: absolute;
+  z-index: -1;
+}
+
+.buttonRoom{
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.roomCopy {
+  right: 10px;
+  width: 155px;
+  display: inline;
+  color: white;
+  text-align: center;
+  z-index: 3;
+  position: absolute;
+}
+
+.titleNav {
+  width: 100%;
+  margin-top: 0px;
+  font-size: 35px;
+  display: inline;
+  color: white;
+  text-align: center;
+  z-index: 2;
+  position: absolute;
+}
+
+.userNumber {
+  right: 200px;
+  width: 160px;
+  margin-top: 8px;
+  font-size: 20px;
+  z-index: 2;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 15px;
+  position: absolute;
+}
+
+.dropUsers:hover .userNumber {
+  background-color: rgba(0,0,0,.2);
+}
+
+.dropUsers:hover .dropdownUsers {
+  display: block;
+}
+
+.dropdownUsers {
+  display: none;
+  z-index: 2;
+  right: 200px;
+  width: 170px;
+  position: absolute;
+  margin-top: 33px;
+}
+
+.dropdownUsers p{
+  margin: 0;
+  font-size: 15px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  display: block;
+  border-radius: 15px;
+  z-index: 2;
+}
