@@ -4,7 +4,7 @@
   "description": "Server for Note Collab",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "node": "^12.16.0",
     "socket-io": "^1.0.0",
     "socket.io": "^2.3.0",
